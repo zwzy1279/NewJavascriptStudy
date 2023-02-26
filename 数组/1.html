@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var arr=[1,2,'小红','小蓝'];
+        //for循环遍历
+        for(var i=0;i<arr.length;i++){
+            console.log(arr[i]);
+        }
+        console.log("---------------");
+        //调用forEach方法实参处需要传一个方法，此方法由浏览器自行调用
+        //传进来的方法的形式参数：第一个参数是数组的某一个元素，第二个参数是数组的下标，第三个参数是数组
+        arr.forEach(function(a,b,c){
+            console.log("a="+a);
+            //console.log("b="+b);
+            //console.log("c="+c);
+        })
+        console.log("---------------");
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var a=1;
+        var b='English';
+        var c=false;
+        var d=undefined;
+        var e=null;
+        console.log(typeof a);//number
+        console.log(typeof b);//string
+        console.log(typeof c);//boolean
+        console.log(typeof d);//undefined
+        console.log(typeof e);//object
+        console.log(typeof a==="number");//true//证明typeof返回的是字符串的数据类型
+        //===是没有转换成用一个类型，就直接进行比较//所以这里如果左右的数据类型是不一样的，就直接输出false了
+        //==是左右两边都是转换成同一个数据类型，然后再进行比较
+        
+        console.log(typeof e);//objects//这里要注意typeof null的值是object，而并不是unll
+        console.log(typeof d);//undefined//这里typeof undefined的值是undefined
+
+        console.log('````````````');
+        
+        var f={
+            a:1,
+            b:'one',
+            c:function(){
+                console.log("hhh");
+            }
+        }
+        var g=[1,2,3,4];
+        var h=function(){
+            console.log("xxx");
+        }
+        console.log(typeof f);//object
+        console.log(typeof g);//object
+        console.log(typeof h);//function
+        //所以typeof可以判断出对象中的方法。而不能判断出对象中的对象和数组的具体类型
+        //那么我们如何判断对象的具体类型呢，用什么方法呢
+    </script>
+</body>
+</html>

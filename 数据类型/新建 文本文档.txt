@@ -1,0 +1,4 @@
+null和undefined的区别
+typeof什么类型NaN 空数组类型
+
+类型转换 强制

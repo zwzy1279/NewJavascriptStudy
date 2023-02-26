@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var arr=[1,2,'小红','小蓝'];
+        /*增加元素 push unshift*/
+        var result=arr.push("牛魔王");
+        console.log("arr="+arr);//arr=1,2,小红,小蓝,牛魔王
+        console.log("result="+result);//result=5//返回的是现在数组的长度
+        console.log("---------------");
+        result=arr.unshift(3);
+        console.log("arr="+arr);//arr=3,1,2,小红,小蓝,牛魔王
+        console.log("result="+result);//result=6//返回的是现在数组的长度
+        console.log("-------------------");
+        /*删除元素 pop shift delete splice*/
+        result=arr.pop();
+        console.log("arr="+arr);//arr=3,1,2,小红,小蓝
+        console.log("result="+result);//result=牛魔王//返回的是现在结尾处被删掉的元素
+        console.log("-------------------");
+        result=arr.shift();
+        console.log("arr="+arr);//arr=1,2,小红,小蓝
+        console.log("result="+result);//result=3//返回的是现在开头处被删掉的元素
+        console.log("-------------------");
+        delete arr[0];
+        console.log("arr="+arr);//arr=,2,小红,小蓝
+        console.log(arr[0]);//undefined//删除后的那个值值为undefined
+        console.log("-------------------");
+        result=arr.splice(0,2);
+        console.log("arr="+arr);//arr=小红,小蓝
+        console.log("result="+result);//result=,2//返回的是被删掉的元素
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var f={
+            a:1,
+            b:'one',
+            c:function(){
+                console.log("hhh");
+            }
+        }
+        var g=[1,2,3,4];
+        var h=function(){
+            console.log("xxx");
+        }
+        console.log(f instanceof Object);//true
+        console.log(g instanceof Object);//true
+        console.log(h instanceof Object);//true
+        console.log("`````````````````````");
+        console.log(f instanceof Object);//true
+        console.log(g instanceof Array);//true
+        console.log(h instanceof Function);//true
+        //所以可以用instanceof来判断对象的具体数据类型
+        //当属于某个类型时会返回true，反之返回false
+        
+        
+        var a=1;
+        var b='English';
+        var c=false;
+        var d=undefined;
+        var e=null;
+        console.log("````````````````````");
+        console.log(a instanceof Number);//false
+        console.log(b instanceof String);//false
+        console.log(c instanceof Boolean);//false
+        //console.log(d instanceof undefined);
+        console.log(d instanceof Object)//false
+        //console.log(e instanceof Null);
+        console.log(e instanceof Object);//false
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function fn1(a,b,c){
+            console.log('我是fn1,'+this);//fn1调用时为window
+            //fn1.call(obj)调用时，this为obj
+            console.log(a,b,c);
+            console.log(arguments);//[1, 2, 3, callee: ƒ, Symbol(Symbol.iterator): ƒ]
+            console.log(arguments[0]);//1
+            console.log(arguments[2]);//3
+        }
+        var fn2=function(a,b){
+            console.log('我是fn2,'+this);//fn2调用时为window
+            //fn2.apply(obj);调用时，this为obj
+            console.log(a,b);
+        }
+        //apply传进的参数必须得用数组的形式传递进去
+        fn1();
+        fn2();
+        console.log(fn2);
+        var obj={};
+        fn1.call(obj,1,2,3);
+        fn2.apply(obj,[1,2]);
+    </script>
+</body>
+</html>
