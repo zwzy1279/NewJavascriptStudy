@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .bigbox {
+            width:200px;
+            height:100px;
+            background:pink;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            flex-direction: column;
+        }
+        .show {
+            width:200px;
+            height:50px;
+            background:skyblue;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            flex-direction: column;
+        }
+        .code {
+            cursor: pointer;
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="bigbox"> 
+        <div class="code">www</div>
+        <input type="text">
+        <button id="btn">验证</button>
+    </div>
+    <div class="show">dd</div>
+    <script>
+        //如何生成有数字有字母的内容
+        //页面一加载就和立马触发验证码生成
+        //如何限制用户不能赋值验证码 user-select:none;
+        //当用户光标移到验证码处，箭头如何变成小手 cursor:pointer;
+        var code=document.getElementsByClassName('code')[0];
+        var input=document.getElementsByTagName('input')[0];
+        var btn=document.getElementById('btn');
+        var show=document.querySelector('.show');
+        function getCode(){
+            //alert('11');
+            return Math.random().toString(36).substr(3,5); //随机生成的0-1之间的数字转为36进制，里面包含数字和字母   
+        }
+        btn.onclick=function(){
+            if((input.value).trim==code.innerHTML){
+                show.innerHTML="验证成功";
+            }else{
+                show.innerHTML="请输入正确的验证码";
+            }
+        }
+        code.onclick=function(){
+            code.innerHTML=getCode();
+        }
+        //网页载入的时候，就出现验证码了
+        code.click();
+    </script>
+</body>
+</html>

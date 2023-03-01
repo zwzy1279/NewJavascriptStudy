@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="box">
+        <span class="hour"></span>
+        <span class="min"></span>
+        <span class="seconds"></span>
+    </div>
+    <script>
+        let date=new Date();
+        console.log(date);//Mon Feb 27 2023 19:07:57 GMT+0800 (中国标准时间)
+        let year=date.getFullYear();
+        console.log(year);//2023
+        let month=date.getMonth();//返回一年中的第几月(0-11)
+        console.log(month);//1
+        let day=date.getDate();//getDate返回一个月中的第几天（1-31）
+        console.log(day);//27
+        let weekday=date.getDay();//一周中的某一天（0-6）
+        console.log("weekday="+weekday);//1
+        let hour=date.getHours();//返回date中的小时（0-23）
+        console.log(hour);//19
+        let min=date.getMinutes();
+        console.log(min);
+        let second=date.getSeconds();
+        console.log(second);
+        let time=date.getTime();//getTime方法获取的是从1970年1月1号至今的时间（毫秒）
+        console.log(time);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        setTimeout(function(){
+            console.log("123");
+        },1000);//延迟一秒后执行函数，只执行一次后就停止
+        /*
+        setInterval(function(){
+            console.log("123");
+        },1000);//每隔一秒执行一次
+        */
+        /*当定时器中有for循环时，而且循环次数比较多时，使用setInterval页面会出现卡断现象，我们必须使用setTimeout*/
+        /*这是因为js的基本运行机制遇到了回调函数，就会先把回调函数放到任务队列中，先执行执行栈，执行完栈里面的东西再把任务队列放到任务栈里面去执行*/
+        /*setInterval是每隔一段时间，执行一次，但是每次再执行栈中执行，for里面还么结束，这一次的回调函数还没完成，就到了规定的时间了。所以下一次的回调函数只能够继续放在任务队列中，等待上一次的回调函数执行完再轮到他执行官。所以我们也要知道setInterval并不是真正意义上的每隔一段时间就会执行*/
+        /*而setTimeout是延迟规定的时间执行一次后就结束*/
+    </script>
+</body>
+</html>

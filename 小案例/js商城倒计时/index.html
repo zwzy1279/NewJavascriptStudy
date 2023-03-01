@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <span class="dayspan"></span>
+        <span class="hourspan"></span>
+        <span class="minspan"></span>
+        <span class="secondspan"></span>
+    </div>
+    <script>
+        var dayspan=document.querySelector('.dayspan');
+        //console.log(dayspan)
+        var hourspan=document.querySelector('.hourspan');
+        var minspan=document.querySelector('.minspan');
+        var secondspan=document.querySelector('.secondspan');
+        var deadDate=new Date('2023-2-28 01:00:00');
+        console.log(deadDate);
+        var deadSeconds=parseInt(deadDate.getTime()/1000);
+        function countTime(){
+            var nowdate=new Date();
+            var nowdateSeconds=parseInt(nowdate.getTime()/1000);
+            var remainSeconds=deadSeconds-nowdateSeconds;
+            if(remainSeconds<0){return 0;}
+            var day=Math.floor(remainSeconds/60/60/24);
+            //console.log('day='+day);
+            var hour=Math.floor(remainSeconds/60/60%24);
+            //秒除以60获得多少分钟，再除以60时获得多少小时
+            //获得是总共有多少小时，而我们要的是处整天以外的小时
+            //所以再让这个分钟去%24，得到一个0-23之间的数字，也就是小时
+            var min=Math.floor(remainSeconds/60%60);
+            //得到了多少分钟，再让这个分钟去%，得到除去60整以外的0-59的数字
+            var second=Math.floor(remainSeconds%60);
+
+            dayspan.innerHTML=day+"天";
+            hourspan.innerHTML=hour+"时";
+            minspan.innerHTML=min+"分";
+            secondspan.innerHTML=second+"秒";
+
+            //定时器
+        setTimeout(countTime,1000);
+        }
+        countTime();
+
+        
+        //所以再让这个分钟去%24，得到一个0-23之间的数字，也就是小时
+    </script>
+</body>
+</html>
