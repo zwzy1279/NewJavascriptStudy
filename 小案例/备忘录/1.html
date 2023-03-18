@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .spanstyle {
+            text-decoration:line-through;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="text">
+    <button id="btn">添加</button>
+    <div class="contentbox"></div>
+    <!-- <div>
+        <button class="finish">完成</button>
+        <button class="cancel">取消</button>
+        <button class="delete">删除</button>
+        <span class="spantext"></span>
+    </div> -->
+    <script>
+        var text=document.getElementById('text');
+        var btn=document.getElementById('btn');
+        var contentbox=document.getElementsByClassName('contentbox')[0];
+        btn.onclick=function(){
+            //alert('123');
+            //添加节点
+            contentbox.insertAdjacentHTML(
+                'beforeend',
+                `<div>
+                    <button class="finish">完成</button>
+                    <button class="cancel">取消</button>
+                    <button class="remove">删除</button>
+                    <span class="spantext">${text.value}</span>
+                </div>`
+            );
+            //清空输入框的内容
+            text.value="";
+            //文本框聚焦
+            text.focus();
+        }
+        /*var finish=document.querySelector('.finish');
+        var cancel=document.querySelector('.cancel');
+        var remove=document.querySelector('.delete');
+        finish.onclick=function(){
+            alert('123');
+        }获取无效*/
+        contentbox.onclick=function(){
+            var targetElement=event.target;
+            //获取到父元素下面的所有子元素
+            var targetkid=targetElement.parentElement.children;
+            //alert('123');//点击三个按钮中的任意一个，都是有效的
+            //我们要获取到我们点击的那一个
+           // console.log(event.target);//可以获得到
+           if(targetElement.innerHTML=='完成'){
+            //alert('1223');
+            //划掉添加上的内容//加上line-through的样式//添加样式
+            targetkid[3].classList.add('spanstyle');
+           }else if(targetElement.innerHTML=='取消'){
+                targetkid[3].classList.remove('spanstyle');
+           }else{
+                 targetElement.parentElement.remove();
+           }
+        }//到此为止，已经大概完成了，但是我们会发现当我们刷新页面时，内容就都没有了，需要我们去存储保存起来
+    </script>
+</body>
+</html>

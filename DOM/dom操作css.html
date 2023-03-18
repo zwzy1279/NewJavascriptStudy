@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul {
+            list-style:none;
+        }
+        li {
+            width:50px;
+            height:50px;
+            border-radius: 50%;
+            background:yellow;
+            margin-bottom:5px;
+            line-height:50px;
+            text-align: center;
+        }
+        #btn {
+            left:15px;
+            position:relative;
+        }
+        .test {
+            width:100px;
+            height:100px;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li id="one">1</li>
+        <li class="two">2</li>
+        <li class="two">3</li>
+        <li class="two">4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+    </ul>
+    <button id="btn">点我修改样式</button>
+    <script>
+        var btn=document.getElementById('btn');
+        btn.onclick=function(){
+            
+        var one=document.getElementById('one');
+        one.setAttribute('style','background:black');
+
+        var two=document.getElementsByClassName('two');
+        //console.log(two);//集合//HTMLCollection(3) [li.two, li.two, li.two]
+        //two.style.background="green";//报错，必须向数组一样[]去获取元素
+        two[1].style.background="green";
+
+        var lis=document.getElementsByTagName('li');
+        //console.log(lis);//HTMLCollection(7) [li#one, li.two, li.two, li.two, li, li, li, one: li#one]
+        //lis[4].classList.add('test');
+        lis[4].classList.toggle('test');
+
+        var li=document.querySelector('.two');
+        //console.log(li2);//<li class="two">2</li>//即使有多个.two,也只会获取到第一个
+
+        var lis2=document.querySelectorAll('.two');
+        //console.log(lis2);//<li class="two">2</li>//这里返回的就是一个集合了
+        lis2[2].style.background="pink";
+
+        }
+    </script>
+</body>
+</html>

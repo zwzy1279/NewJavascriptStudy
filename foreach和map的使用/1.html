@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arr=[1,2,3,4,5];
+        var a=arr.forEach((item,index,array)=>{
+            console.log(item+","+index+','+array);
+            return array;//undefined
+        });
+        console.log(a);
+        console.log('-----------');
+        var b=arr.map((item,index,array)=>{
+            console.log(item+","+index+','+array);
+            return array;//[Array(5), Array(5), Array(5), Array(5), Array(5)]
+        });
+        console.log(b);
+        //forEach和map无差别，这两个的用法差不多，都是在调用这个方法时，向里面传入一个函数，都用来遍历数组
+        //但是也是有区别的，就是forEach没有返回值，而map是有返回值的
+        //如何去修改数组的值，通过第三个参数array下标的方法去修改
+        //forEach和map都用不了break和continue;//for能用break和continue
+        //要用break就使用try,要使用continue就是用try和catch
+    </script>
+</body>
+</html>

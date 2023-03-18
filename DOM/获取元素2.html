@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul {
+            list-style:none;
+        }
+        li {
+            width:50px;
+            height:50px;
+            border-radius: 50%;
+            background:yellow;
+            margin-bottom:5px;
+            line-height:50px;
+            text-align: center;
+        }
+        #btn {
+            left:15px;
+            position:relative;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li id="one">1</li>
+        <li class="two">2</li>
+        <li class="two">3</li>
+        <li class="two">4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+    </ul>
+    <button id="btn">点我修改样式</button>
+    <script>
+        var btn=document.getElementById('btn');
+        btn.onclick=function(){
+        var two=document.getElementsByClassName('two');
+        //two[1].nextElementSibling.background='pink';//.two第二个的下一个兄弟节点背景位粉色//也就是第4个球
+        //threeball=two[1].nextElementSibling;
+        //console.log(threeball);
+        two[1].nextElementSibling.style.background='pink';
+        two[1].previousElementSibling.style.background='#bfa';
+        two[1].parentElement.style.background="skyblue";
+
+        var uls=document.getElementsByTagName('ul');
+        //console.log(uls[0].children);//返回集合
+        //console.log(uls[0].children[0]);//单个元素
+        uls[0].children[0].style.background='red';
+        }
+    </script>
+</body>
+</html>

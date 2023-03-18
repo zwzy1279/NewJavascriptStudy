@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .spanstyle {
+            text-decoration:line-through;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="text">
+    <button id="btn">添加</button>
+    <div class="contentbox"></div>
+    <script>
+        var arr=[];
+        var text=document.getElementById('text');
+        var btn=document.getElementById('btn');
+        var contentbox=document.getElementsByClassName('contentbox')[0];
+        btn.onclick=function(){
+            //arr.push(text.value);
+            //存储到本地
+            //save(arr);
+            inserthtml(text.value,'');
+            //清空输入框的内容
+            text.value="";
+            //文本框聚焦
+            text.focus();
+            //这里调用保存
+            savetodo();
+
+        }
+        contentbox.onclick=function(){
+            var targetElement=event.target;
+            //获取到父元素下面的所有子元素
+            var targetkid=targetElement.parentElement.children;
+           if(targetElement.innerHTML=='完成'){
+                targetkid[3].classList.add('spanstyle');
+           }else if(targetElement.innerHTML=='取消'){
+                targetkid[3].classList.remove('spanstyle');
+           }else{
+                 targetElement.parentElement.remove();
+           }
+           //每一次操作要保存
+           savetodo()
+        }//到此为止，已经大概完成了，但是我们会发现当我们刷新页面时，内容就都没有了，需要我们去存储保存起来
+        //本地存储localStorage,存储什么，存储文本，text的value值
+       /*
+        //用一个数组来存储
+        var arr=[];
+        //当点击contentbox时，将text的value值保存到数组中
+        btn.onclick=function(){
+            arr.push(text.value);
+        }
+        console.log(arr);
+        */
+        //console.log(arr);
+        //保存到本地的函数
+        function save(arr){
+            //将数组转成字符串再存储到本地
+            localStorage.mydata=JSON.stringify(arr);
+        }
+        //读取本地存储
+        function read(){
+            //将本地存储的数据转成数组再读取
+            let arr=JSON.parse(localStorage.mydata);
+            return arr;
+        }
+        //当页面重新更新加载时，去读数据
+        function savetodo(){
+            //把读到的写到这个数组
+            let todoarr=[];
+            //对象
+            let todostyle={};
+            //获取到span框的值(所有)
+            var econtent=document.querySelectorAll('.spantext');
+            //遍历所有span
+            for(let i=0;i<econtent.length;i++){
+                //把东西存到对象中（同一个），对象再存到数组中
+                todostyle.name=econtent[i].innerHTML;
+                todostyle.donestyle=econtent[i].classList.contains('spanstyle');
+                //todoarr.push(econtent[i].innerHTML);
+                todoarr.push(todostyle);
+            }
+            save(todoarr);
+
+        }
+        //读取todo的函数
+        function readtodo(){
+            let todoarr=read();//读取到了//并存下来
+            for(var i=0;i<todoarr.length;i++){
+                inserthtml(todoarr[i].name,todoarr[i].donestyle?'done':'');
+            }
+        }
+        var inserthtml=function(val,sty){
+            contentbox.insertAdjacentHTML(
+                'beforeend',
+                `<div>
+                    <button class="finish">完成</button>
+                    <button class="cancel">取消</button>
+                    <button class="remove">删除</button>
+                    <span class="spantext ${sty}">${val}</span>
+                </div>`
+            );
+        }
+        //这里运行保证每个函数都用上
+        readtodo();
+    </script>
+</body>
+</html>

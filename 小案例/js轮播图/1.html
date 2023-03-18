@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin:0px;
+            padding:0px;
+            text-decoration:none;
+            list-style:none;
+        }
+        .bigbox {
+            width:800px;
+            height:400px;
+            background:#bfa;
+            overflow: hidden;
+            position:relative;
+        }
+        .imgList {
+            width:4000px;
+            height:400px;
+        }
+        .imgList li {
+            float:left;
+            width:800px;
+            height:400px;
+        }
+        img {
+            width:100%;
+            height:100%;
+        }
+        .prev {
+            position:absolute;
+            text-align:center;
+            width:30px;
+            height:40px;
+            background:#666;
+            line-height:40px;
+            top:45%;
+            left:5px;
+        }
+        .next {
+            position:absolute;
+            width:30px;
+            height:40px;
+            background:#666;
+            line-height:40px;
+            top:45%;
+            right:5px;
+        }
+        .radiusbigbox {
+            width:200px;
+            height:30px;
+            position:absolute;
+            left:730px;
+            top:360px;
+        }
+        .radiusbigbox li{
+            border-radius:50%;
+            background:#666;
+            float:left;
+            margin-right:2px;
+            width:15px;
+            height:15px;
+            font-size:12px;
+            text-align:center;
+            line-height:15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="bigbox">
+        <ul class="imgList">
+            <li><img src="images/1.webp"></li>
+            <li><img src="images/8.webp"></li>
+            <li><img src="images/6.jpg"></li>
+            <li><img src="images/7.webp"></li>
+            <li><img src="images/1.webp"></li>
+        </ul>
+        <div class="prev"><</div>
+        <div class="next">></div>
+        <ul class="radiusbigbox">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+    </div>
+</body>
+<script>
+    var bigbox=document.querySelector('.bigbox');
+    var ul=document.querySelector('.imgList');
+    
+var radiusbigbox=document.querySelector('.radiusbigbox');
+var lis=radiusbigbox.getElementsByTagName('li');
+    //console.log(ul);
+    var timer;
+    var left=0;
+    run();
+    function run(){
+        //if(left<=-3200+800){
+        //    left=0;
+        //}
+        if(left<=-3200){
+            left=0;
+        }
+        var m=Math.floor(-left/800);
+        //console.log(m);
+        ul.style.marginLeft=left+'px';
+        left-=10;
+        //一张结束后停留2秒
+        var n=(left%800==0)?n=2000:n=10;
+        timer=setTimeout(run,n);
+        iconchange(m);
+    }
+    var prev=document.querySelector('.prev');
+    var next=document.querySelector(".next");
+   function imgchange(n){
+    var lt=-(n*800);
+    ul.style.marginLeft=lt+"px"
+    left=lt;
+   }
+   prev.onclick=function(){
+    //跳转到上一张
+    //让marginLeft的值向上改变一张
+    //imgchange(3);
+    //通过当前left值判断出时那一张图片,用现在的位置减去1就是下一张要跳转出去的位置
+    let prevgo=Math.floor(-left/800)-1;
+    if(prevgo==-1){
+        prevgo=3;
+    }
+    imgchange(prevgo);
+}
+next.onclick=function(){
+    //跳转到上一张
+    //让marginLeft的值向上改变一张
+    //imgchange(3);
+    let nextgo=Math.floor(-left/800)+1;//现在的位置加上1，就是下一张的页数
+    if(nextgo==4){
+        nextgo=0;
+    }
+    imgchange(nextgo);
+}
+//console.log(lis.length);
+//console.log(lis);
+//console.log(lis);
+/*
+for(var i=0;i<lis.length;i++){
+    lis[i].onclick=function(){
+        //将所有的背景色都改为白色//排他思想
+        for(var j=0;j<lis.length;j++){
+            lis[j].style.background="";
+        }
+        lis[i].style.background="red";
+    }
+}*/
+function iconchange(m){
+    for(let i=0;i<lis.length;i++){
+        lis[i].style.backgroundColor="#666";
+    }
+    if(m<lis.length){
+        lis[m].style.backgroundColor="red";
+    }
+}
+radiusbigbox.onclick=function(){
+    //console.log(event.target);
+    var number=event.target.innerHTML;
+    var icon=number-1;
+    imgchange(icon);
+    iconchange(icon);
+}
+</script>
+</html>

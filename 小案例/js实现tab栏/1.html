@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin:0px;
+            padding:0px;
+            text-decoration:none;
+            list-style:none;
+        }
+        .bigbox {
+            width:600px;
+            height:400px;
+            background:skyblue;
+            overflow: hidden;
+        }
+        .tab {
+            width:600px;
+            height:50px;
+            text-align:center;
+            /* background:pink;*/
+        }
+        .tab li {
+            float:left;
+            margin-right:70px;
+            width:80px;
+            height:50px;
+            text-align:center;
+            line-height:50px;
+            background-color:#666;
+            font-size:20px;
+        }
+        .imgListbigbox {
+            width:600px;
+            height:350px;
+            background:orange;
+        }
+        .imgList {
+            width:2400px;
+            height:350px;
+        }
+        .imgList li {
+            width:600px;
+            height:350px;
+            list-style:none;
+            float:left;
+        }
+        .imgList li img {
+            width:100%;
+            height:100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="bigbox">
+        <ul class="tab">
+            <li>茉莉</li>
+            <li>粉花</li>
+            <li>玫瑰</li>
+            <li>紫花</li>
+        </ul>
+        <div class="imgListbigbox">
+            <ul class="imgList">
+                <li  class="flower"><img src="images/2.webp"></li>
+                <li class="flower"><img src="images/6.jpg"></li>
+                <li class="flower"><img src="images/8.webp"></li>
+                <li class="flower"><img src="images/4.webp"></li>
+            </ul>
+        </div>
+    </div>
+</body>
+<script>
+    var tab=document.querySelector('.tab');
+    var tabli=tab.getElementsByTagName('li');
+    //console.log(tabli[2]);
+    var imgListbigbox=document.querySelector('.imgListbigbox');
+    var imgList=document.querySelector('.imgList');
+    var imgListli=imgList.getElementsByTagName('li');
+    var left=0;
+    for(var i=0;i<tabli.length;i++){
+        tabli[i].onmouseenter=function(){
+            //alert('12');
+            //console.log(tabli[i]);//undefined//必须得用this
+            for(var j=0;j<tabli.length;j++){
+                tabli[j].style.backgroundColor="#666";
+            }
+            this.style.backgroundColor="pink";
+            //获取当前图片位置
+            var n;
+            //console.log(this.innerHTML);
+            if(this.innerHTML=='茉莉'){
+                n=0;
+            }else if(this.innerHTML=='粉花'){
+                n=1;
+            }else if(this.innerHTML=='玫瑰'){
+                n=2;
+            }else{
+                n=3;
+            }
+            imgchange(n);
+        }
+    }
+    function imgchange(n){//获得那一张图
+        var lt=-n*600;
+        imgList.style.marginLeft=lt+'px';
+    }
+</script>
+</html>

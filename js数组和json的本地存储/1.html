@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="text">
+    <div>
+        <button class="saveLocalStorage">保存</button>
+        <button class="readLocalStorage">读取</button>
+        <button class="removeLocalStorage">清除</button>
+    </div>
+    <script>
+        //将文本的数据存储到数组中
+        let arr=[];
+        var text=document.getElementById('text');
+        var saveLocalStorage=document.querySelector('.saveLocalStorage');
+        var readLocalStorage=document.getElementsByClassName('readLocalStorage')[0];
+        var removeLocalStorage=document.querySelector('.removeLocalStorage');
+        saveLocalStorage.onclick=function(){
+            //alert('123');
+            arr.push(text.value);
+            save(arr);
+            text.value="";
+            text.focus();
+        }
+        readLocalStorage.onclick=function(){
+            //alert('123');
+            //console.log(read());
+        }
+        removeLocalStorage.onclick=function(){
+            //alert('123');
+            clear();
+        }
+        //保存到本地的函数
+        function save(arr){
+            //将text的value收集到的数组转成字符串存储到本地中
+            //这个数组由参数传入
+            localStorage.mydata=JSON.stringify(arr);
+        }
+        //读取本地存储的数据
+        function read(){
+            //将本地存储的字符串转成数组，再读取
+            var arr= JSON.parse(localStorage.mydata);
+            return arr;
+        }
+        //清除本地存储的数据
+        function clear(){
+            localStorage.clear('mydata');
+        }
+    </script>
+</body>
+</html>

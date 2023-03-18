@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var a=1;
+        var a=2;
+        console.log(a);//2
+        //let b=1;
+        //let b=2;//重复声明直接报错
+
+        console.log(c);//undefined
+        var c=4;
+        //其实var c=4；相当于
+        //var c;
+        //c=4;
+        //console.log(d);//报错//Uncaught ReferenceError: Cannot access 'd' before initialization
+        let d=5;
+
+        var e=10;
+        let e4=40;
+        function fn(){
+            return e;//10//全局变量在全局中都可以使用
+            var e2=20;
+            let e3=30;
+        };
+        console.log(fn());
+        //console.log(e2);//报错//Uncaught ReferenceError: e2 is not defined
+        //console.log(e3);//报错//Uncaught ReferenceError: e2 is not defined
+    </script>
+</body>
+</html>
